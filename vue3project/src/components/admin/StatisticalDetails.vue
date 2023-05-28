@@ -246,12 +246,74 @@ export default {
                 day = +day;// ép sang kiểu số 
                 this.works.push(day);
             }
-            const { emitEvent } = useEventBus();
-            emitEvent('eventSuccess','Get Attentdance Success !');
         }) 
         .catch(()=>{
-            const { emitEvent } = useEventBus();
-            emitEvent('eventError','Get Attentdance Fail !');
+        })
+
+        BaseRequest.get('attendance/'+this.id_user+'/'+currentYear+'/'+currentMonth+'/?page=2')
+        .then( (data) =>{
+            this.count = data.count;
+            for(var i=0; i<data.count; i++){
+                var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                day = +day;// ép sang kiểu số 
+                this.works.push(day);
+            }
+        }) 
+        .catch(()=>{
+        })
+
+        BaseRequest.get('attendance/'+this.id_user+'/'+currentYear+'/'+currentMonth+'/?page=3')
+        .then( (data) =>{
+            this.count = data.count;
+            for(var i=0; i<data.count; i++){
+                var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                day = +day;// ép sang kiểu số 
+                this.works.push(day);
+            }
+        }) 
+        .catch(()=>{
+        })
+
+        
+        BaseRequest.get('attendance/'+this.id_user+'/'+currentYear+'/'+currentMonth+'/?page=4')
+        .then( (data) =>{
+            this.count = data.count;
+            for(var i=0; i<data.count; i++){
+                var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                day = +day;// ép sang kiểu số 
+                this.works.push(day);
+            }
+        }) 
+        .catch(()=>{
+        })
+
+        BaseRequest.get('attendance/'+this.id_user+'/'+currentYear+'/'+currentMonth+'/?page=5')
+        .then( (data) =>{
+            this.count = data.count;
+            for(var i=0; i<data.count; i++){
+                var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                day = +day;// ép sang kiểu số 
+                this.works.push(day);
+            }
+        }) 
+        .catch(()=>{
+        })
+
+        BaseRequest.get('attendance/'+this.id_user+'/'+currentYear+'/'+currentMonth+'/?page=6')
+        .then( (data) =>{
+            this.count = data.count;
+            for(var i=0; i<data.count; i++){
+                var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                day = +day;// ép sang kiểu số 
+                this.works.push(day);
+            }
+        }) 
+        .catch(()=>{
         })
 
         BaseRequest.get('checkins/?id_user='+this.id_user)
@@ -283,10 +345,9 @@ export default {
             return(`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
         },
         statisticalMonth(){
+            this.works = [];
             BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/')
             .then( (data) =>{
-                console.log(data);
-                this.works = [];
                 this.count = data.count;
                 for(var i=0; i<data.count; i++){
                     var day = data.results[i].date.split('-')[2]; // lấy ngày 
@@ -294,12 +355,74 @@ export default {
                     day = +day;// ép sang kiểu số 
                     this.works.push(day);
                 }
-                const { emitEvent } = useEventBus();
-                emitEvent('eventSuccess','Get Attentdance Success !');
             }) 
             .catch(()=>{
-                const { emitEvent } = useEventBus();
-                emitEvent('eventError','Get Attentdance Fail !');
+            })
+
+            BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/?page=2')
+            .then( (data) =>{
+                this.count = data.count;
+                for(var i=0; i<data.count; i++){
+                    var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                    day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                    day = +day;// ép sang kiểu số 
+                    this.works.push(day);
+                }
+            }) 
+            .catch(()=>{
+            })
+
+            BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/?page=3')
+            .then( (data) =>{
+                this.count = data.count;
+                for(var i=0; i<data.count; i++){
+                    var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                    day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                    day = +day;// ép sang kiểu số 
+                    this.works.push(day);
+                }
+            }) 
+            .catch(()=>{
+            })
+
+
+            BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/?page=4')
+            .then( (data) =>{
+                this.count = data.count;
+                for(var i=0; i<data.count; i++){
+                    var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                    day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                    day = +day;// ép sang kiểu số 
+                    this.works.push(day);
+                }
+            }) 
+            .catch(()=>{
+            })
+
+            BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/?page=5')
+            .then( (data) =>{
+                this.count = data.count;
+                for(var i=0; i<data.count; i++){
+                    var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                    day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                    day = +day;// ép sang kiểu số 
+                    this.works.push(day);
+                }
+            }) 
+            .catch(()=>{
+            })
+
+            BaseRequest.get('attendance/'+this.user_statistical.id+'/'+this.currentYear+'/'+this._currentMonth+'/?page=6')
+            .then( (data) =>{
+                this.count = data.count;
+                for(var i=0; i<data.count; i++){
+                    var day = data.results[i].date.split('-')[2]; // lấy ngày 
+                    day = day.replace(/^0+/, ''); // chuyển "02" thành "2";
+                    day = +day;// ép sang kiểu số 
+                    this.works.push(day);
+                }
+            }) 
+            .catch(()=>{
             })
 
             // Lấy số ngày của tháng 

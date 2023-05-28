@@ -273,7 +273,8 @@ def EncodeFrameSenet50(image):
     list_encode = []
     imagetest = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     # detect face
-    faces = face_recognition.face_locations(imagetest)
+    faces = face_recognition.face_locations(imagetest, model='cnn')
+    # faces = face_recognition.face_locations(imagetest)
     # if not exactly 1 face is detected, skip this photo
     if len(faces) == 0:
         print(f'---We need exactly 1 face; photo skipped---')
