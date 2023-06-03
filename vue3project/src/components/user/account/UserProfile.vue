@@ -105,16 +105,18 @@ export default {
     },
     mounted(){
         this.user = JSON.parse(window.localStorage.getItem('user'));
-        if (this.user.url_video.includes('8000')) {
+        if(this.user.url_video){
+            if (this.user.url_video.includes('8000')) {
             this.link_video = this.user.url_video;
-        } else {
-            this.link_video = config.API_URL + this.user.url_video.slice(1);
-        }
-        if(this.user.fullname) {
-            window.document.title = this.user.fullname + ' - PBL5';
-        }
-        else {
-            window.document.title = 'Profile User - PBL5';
+            } else {
+                this.link_video = config.API_URL + this.user.url_video.slice(1);
+            }
+            if(this.user.fullname) {
+                window.document.title = this.user.fullname + ' - PBL5';
+            }
+            else {
+                window.document.title = 'Profile User - PBL5';
+            }
         }
     },
     methods: {
