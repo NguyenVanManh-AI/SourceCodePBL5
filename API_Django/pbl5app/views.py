@@ -1,8 +1,29 @@
 from rest_framework import viewsets
 from django.core.mail import send_mail
 from .models import User, Encode, Attendance, AttendanceImage, Unconfirm
-from .serializers import UserSerializer, UserPasswordUpdateSerializer, EncodeSerializer, AttendanceImageSerializer, UnconfirmSerializer
+from .serializers import UserSerializer, UserPasswordUpdateSerializer, EncodeSerializer, AttendanceImageSerializer, UnconfirmSerializer, AttendanceSerializer
 # Create your views here.
+
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def getFullnameById(request):
+    if request.method == 'GET':
+        id_user = request.GET.get('id_user')
+        fullname =  User.objects.get(id=id_user).fullname
+        return JsonResponse({'fullname': str(fullname)})
+
+class CustomPagination(PageNumberPagination):
+    page_size = Attendance.objects.all().count()  # Đặt page_size bằng tổng số kết quả
+
+class AttendanceViewSet(ModelViewSet):
+    queryset = Attendance.objects.all().order_by('-id')
+    serializer_class = AttendanceSerializer
+    pagination_class = CustomPagination
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -10,6 +31,9 @@ class UserViewSet(viewsets.ModelViewSet):
 class UnconfirmViewSet(viewsets.ModelViewSet):
     queryset = Unconfirm.objects.all()
     serializer_class = UnconfirmSerializer
+
+
+
 
 import hashlib
 
@@ -299,14 +323,21 @@ def EncodeFrameSenet50(image):
     return list_encode
 
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+
 
 import numpy as np
+import os
+import shutil
 
 import re
+
+import string 
+import random 
 @csrf_exempt
 def receive_image(request):
     if request.method == 'POST':
+        cnt = 0
+        name_user = ""
         if 'image' in request.FILES:
             image_file = request.FILES['image']
             # Chuyển đổi image_file thành framS
@@ -366,9 +397,10 @@ def receive_image(request):
                             pass
 
                         if (found):
+                            cnt += 1
                             continue
                             
-
+                        name_user += User.objects.get(id=list_userId[matchIndex]).fullname + ','
                         new_attendance = Attendance(id_user=list_userId[matchIndex],  date_time= datetime.datetime.now())
                         new_attendance.save()
 
@@ -392,9 +424,19 @@ def receive_image(request):
                             except User.DoesNotExist:
                                 # Xử lý trường hợp không tìm thấy người dùng
                                 pass
-                           
 
-            return JsonResponse({'message': 'Success', 'len':str(len(list_encode))})
+                    else:
+                        cnt += 1
+                        new_attendance = Attendance(id_user=999999,  date_time= datetime.datetime.now())
+                        new_attendance.save()
+
+                # # Khảo sát
+                # dem = random.randint(1,10000000000)
+                # cv2.imwrite(f'frame_{str(name_user) + " - " + str(dem)}.jpg',framS)
+                # # Khảo sát
+
+            return JsonResponse({'message': 'Success', 'so guong mat phat hien':str(len(list_encode)), 'so guong mat unknown':str(cnt), 'cac nhan vien duoc nhan dien':str(name_user)})
+            # return JsonResponse({'message': 'Success', 'so guong mat phat hien':str(len(list_encode))})
         else:
             return JsonResponse({'message': 'No image found in request'}, status=400)
     else:

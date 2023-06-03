@@ -20,12 +20,11 @@ class EncodeSerializer(serializers.ModelSerializer):
         fields = ['id', 'id_user', 'encode_user']
 
 class AttendanceSerializer(serializers.ModelSerializer):
-    date = serializers.DateField(source='date_time', format='%Y-%m-%d')
+    date = serializers.DateTimeField(source='date_time', format='%Y-%m-%d %H:%M')
 
     class Meta:
         model = Attendance
         fields = ('id', 'id_user', 'date')
-
 
 class AttendanceImageSerializer(serializers.ModelSerializer):
     checkin = serializers.DateTimeField(source='checkin_time', format='%Y-%m-%d %H:%M')

@@ -4,10 +4,11 @@ from .views import UserViewSet, LoginView, UserList, AdminList, UserUpdateAPIVie
 from .views import AttendanceByMonthAPIView
 from .views import attendance_count
 from .views import attendance_count_by_month
-from .views import attendance_day, attendance_month, attendance_year, num_user, AttendanceImageViewSet, UnconfirmViewSet
+from .views import attendance_day, attendance_month, attendance_year, num_user, AttendanceImageViewSet, UnconfirmViewSet, AttendanceViewSet, getFullnameById
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'attendances', AttendanceViewSet)
 router.register(r'unconfirms', UnconfirmViewSet)
 router.register(r'checkins', AttendanceImageViewSet, basename='attendanceimage')
 
@@ -29,5 +30,6 @@ urlpatterns = [
     path('attendance-month/', attendance_month, name='attendance_month'),
     path('attendance-year/', attendance_year, name='attendance_year'),
     path('num-user/', num_user, name='num-user'),
+    path('full-name/', getFullnameById, name='full-name'),
     
 ]

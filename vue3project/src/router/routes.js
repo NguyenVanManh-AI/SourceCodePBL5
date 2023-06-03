@@ -15,6 +15,7 @@ import AdminManagementAdmin from './../components/admin/AdminManagementAdmin'
 import AdminManagementUser from './../components/admin/AdminManagementUser'
 import AdminStatistical from './../components/admin/AdminStatistical'
 import StatisticalDetails from './../components/admin/StatisticalDetails'
+import AdminLogs from './../components/admin/AdminLogs'
 
 // user 
 import UserComp from './../components/User'
@@ -74,6 +75,7 @@ const routes = [
             {path:'management-admin',name:'AdminManagementAdmin',component:AdminManagementAdmin},
             {path:'management-user',name:'AdminManagementUser',component:AdminManagementUser},
             {path:'statistical',name:'AdminStatistical',component:AdminStatistical},
+            {path:'logs',name:'AdminLogs',component:AdminLogs},
             {path:'statistical-details/:id',name:'StatisticalDetails',component:StatisticalDetails},
         ]
     }, 

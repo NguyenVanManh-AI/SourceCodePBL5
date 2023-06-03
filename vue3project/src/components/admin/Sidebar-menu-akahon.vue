@@ -32,6 +32,14 @@
             </li>
           </span>
 
+          <div class="line"></div>
+          <span>
+            <li @click="logs">
+              <a :class="{adefault:true,aclick:colors[10]}"><i class="fa-solid fa-clock-rotate-left"></i><span class="links_name">Logs</span></a>
+              <span class="tooltip">Logs</span>
+            </li>
+          </span>
+
           <div class="line d-none"></div>
           <span class="d-none">
             <li @click="article">
@@ -236,7 +244,7 @@
     data() {
       return {
         isOpened: false,
-        colors:[false,false,false,false,false,false,false,false,false,false],
+        colors:[false,false,false,false,false,false,false,false,false,false,false],
         admin:{
           id:null,
           email:null,
@@ -322,6 +330,11 @@
         for(var i=0;i<this.colors.length;i++) this.colors[i] = false;
         this.colors[8]=true;
         this.$router.push({name:'StatisticalAdmin'});
+      },
+      logs:function(){
+        for(var i=0;i<this.colors.length;i++) this.colors[i] = false;
+        this.colors[10]=true;
+        this.$router.push({name:'AdminLogs'});
       },
       customer:function(){
         for(var i=0;i<this.colors.length;i++) this.colors[i] = false;
