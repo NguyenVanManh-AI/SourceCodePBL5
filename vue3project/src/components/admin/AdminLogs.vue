@@ -62,6 +62,10 @@ export default {
     },
     mounted() {
 
+        document.title = "Admin Logs - PBL5";
+        const { emitEvent } = useEventBus();
+        emitEvent('eventSuccess','Logs Success !');
+
         BaseRequest.get('attendances/')
         .then(data => {
             this.logs = data.results;

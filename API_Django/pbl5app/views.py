@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from django.core.mail import send_mail
 from .models import User, Encode, Attendance, AttendanceImage, Unconfirm
-from .serializers import UserSerializer, UserPasswordUpdateSerializer, EncodeSerializer, AttendanceImageSerializer, UnconfirmSerializer, AttendanceSerializer
+from .serializers import UserSerializer, UserPasswordUpdateSerializer, EncodeSerializer, AttendanceImageSerializer, UnconfirmSerializer, AttendanceSerializer, AttendanceSerializer2
 # Create your views here.
 
 from rest_framework.pagination import PageNumberPagination
@@ -20,7 +20,7 @@ class CustomPagination(PageNumberPagination):
 
 class AttendanceViewSet(ModelViewSet):
     queryset = Attendance.objects.all().order_by('-id')
-    serializer_class = AttendanceSerializer
+    serializer_class = AttendanceSerializer2
     pagination_class = CustomPagination
 
 

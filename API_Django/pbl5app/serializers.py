@@ -20,6 +20,13 @@ class EncodeSerializer(serializers.ModelSerializer):
         fields = ['id', 'id_user', 'encode_user']
 
 class AttendanceSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(source='date_time', format='%Y-%m-%d')
+
+    class Meta:
+        model = Attendance
+        fields = ('id', 'id_user', 'date')
+
+class AttendanceSerializer2(serializers.ModelSerializer):
     date = serializers.DateTimeField(source='date_time', format='%Y-%m-%d %H:%M')
 
     class Meta:
