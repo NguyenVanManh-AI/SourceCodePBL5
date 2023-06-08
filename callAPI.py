@@ -5,9 +5,9 @@ import time
 # Chạy server tại 2 terminal . 1 cái chạy localhost cho client vuejs call api localhost nhanh 
 # 1 cái chạy ip python manage.py runserver 192.168.134.250:8000 cho raspbery call 
 
-url = "http://192.168.1.120:8000/receive_image/?image/" # run by ip 
+# url = "http://192.168.43.250:8000/receive_image/?image/" # run by ip 
 # Đường dẫn của API
-# url = "http://localhost:8000/receive_image/?image/"
+url = "http://localhost:8000/receive_image/?image/"
 # url = "https://8fab-117-2-255-218.ngrok-free.app/receive_image/?image/"
 
 # Khởi tạo camera
