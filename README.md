@@ -7,4 +7,7 @@
 ### 5. cd SourceCodePBL5/vue3project
 ### 6. run : npm install 
 ### 7. run : npm run serve 
-### 8. finally open file callAPI_picamera.py and run it 
+### 8. install Raspberry pi OS (32-bit) for raspberry pi 3  
+### 9. install python for raspberry pi 3  
+
+### 10. finally open file callAPI_picamera.py and run it on raspberry pi 3
