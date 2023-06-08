@@ -103,13 +103,13 @@
             </li>
           </span>
 
-          <div class="line"></div>
+          <!-- <div class="line"></div>
           <span>
             <li @click="comments">
               <a :class="{adefault:true,aclick:colors[7]}"><i class="fa-solid fa-circle-info"></i><span class="links_name">Comments</span></a>
               <span class="tooltip">Comments</span>
             </li>
-          </span>
+          </span> -->
           <div style="height: 300px;">
 
           </div>
